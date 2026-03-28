@@ -624,7 +624,7 @@ footer {
 
 /* стрелки */
 .nav-btn {
-    position: absolute;
+    position: static;
     left: 50%;
     transform: translateX(-50%);
     background: var(--accent-blue);
@@ -662,6 +662,7 @@ footer {
         flex-direction: row;
         align-items: center;
         height: auto;
+        gap: 10px;
     }
 
     .slider-track {
@@ -676,5 +677,9 @@ footer {
         width: 42px;
         height: 42px;
         flex-shrink: 0;
+        padding: 0;
     }
+    .nav-btn.left  { order: 0; }
+    .slider-track  { order: 1; }
+    .nav-btn.right { order: 2; }
 }
