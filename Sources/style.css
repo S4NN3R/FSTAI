@@ -234,7 +234,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 450px;
+    height: 400px;
     overflow: hidden;
 }
 
@@ -337,7 +337,7 @@ footer {
 .char-img {
     position: relative;
     z-index: 1;
-    max-height: 450px;
+    max-height: 400px;
     max-width: 100%;
     object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(79,172,254,0.2));
