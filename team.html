@@ -23,7 +23,15 @@
 <div class="team-stage">
 
     <!-- LEFT: вертикальный слайдер -->
-    <aside class="slider-col" id="sliderCol"></aside>
+    <aside class="slider-col">
+        <div class="slider-track" id="sliderCol"></div>
+    
+        <!-- стрелки -->
+        <button class="nav-btn up" onclick="scrollSlider(-1)">↑</button>
+        <button class="nav-btn down" onclick="scrollSlider(1)">↓</button>
+        <button class="nav-btn left" onclick="scrollSliderX(-1)">←</button>
+        <button class="nav-btn right" onclick="scrollSliderX(1)">→</button>
+    </aside>
 
     <!-- CENTER: PNG персонаж -->
     <main class="char-col">
@@ -72,9 +80,6 @@
 </footer>
 
 <script>
-    let cur = 0;
-    let page = 0;
-    const perPage = 5;
     const members = [
         {
             name:    "S4NN3R",
@@ -138,62 +143,59 @@
         yt:  `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>`,
     };
 
-    let audio = null, playing = false, demoT = null;
-    
+    let cur = 0, audio = null, playing = false, demoT = null;
+
     function buildSlider() {
         const col = document.getElementById('sliderCol');
         col.innerHTML = '';
-    
-        const start = page * perPage;
-        const visible = members.slice(start, start + perPage);
-    
-        visible.forEach((m, i) => {
-            const realIndex = start + i;
-    
+        members.forEach((m, i) => {
             const el = document.createElement('div');
-            el.className = 'slider-item' + (realIndex === cur ? ' active' : '');
-            el.onclick = () => pick(realIndex);
-    
+            el.className = 'slider-item' + (i === cur ? ' active' : '');
+            el.onclick = () => pick(i);
             el.innerHTML = `
                 <span class="slider-name">${m.name}</span>
-                <div class="slider-dot" style="${m.avatar ? `background-image:url('${m.avatar}')` : ''}"></div>
-            `;
-    
+                <div class="slider-dot" style="${m.avatar ? `background-image:url('${m.avatar}')` : ''}"></div>`;
             col.appendChild(el);
         });
-    
-        // ⬇️ КНОПКИ ПАГИНАЦИИ
-        const controls = document.createElement('div');
-        controls.style.marginTop = '15px';
-        controls.style.display = 'flex';
-        controls.style.gap = '10px';
-        controls.style.justifyContent = 'center';
-    
-        const prev = document.createElement('button');
-        prev.textContent = '←';
-        prev.onclick = () => {
-            if (page > 0) {
-                page--;
-                buildSlider();
-            }
-        };
-    
-        const next = document.createElement('button');
-        next.textContent = '→';
-        next.onclick = () => {
-            if ((page + 1) * perPage < members.length) {
-                page++;
-                buildSlider();
-            }
-        };
-    
-        controls.appendChild(prev);
-        controls.appendChild(next);
-        col.appendChild(controls);
     }
-
-
+    function scrollSlider(dir) {
+        const container = document.getElementById('sliderCol');
+        const item = container.querySelector('.slider-item');
+    
+        if (!item) return;
+    
+        const scrollAmount = item.offsetHeight + 10; // + gap
+    
+        container.scrollBy({
+            top: dir * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+    
+    function scrollSliderX(dir) {
+        const container = document.getElementById('sliderCol');
+        const item = container.querySelector('.slider-item');
+    
+        if (!item) return;
+    
+        const scrollAmount = item.offsetWidth + 10;
+    
+        container.scrollBy({
+            left: dir * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+    
     function pick(i) {
+        const container = document.getElementById('sliderCol');
+        const active = container.children[i];
+        
+        if (active) {
+            active.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
         if (i === cur) return;
         stopAudio();
         const img = document.getElementById('charImg');
