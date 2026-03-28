@@ -136,20 +136,59 @@
     };
 
     let cur = 0, audio = null, playing = false, demoT = null;
-
+    
     function buildSlider() {
         const col = document.getElementById('sliderCol');
         col.innerHTML = '';
-        members.forEach((m, i) => {
+    
+        const start = page * perPage;
+        const visible = members.slice(start, start + perPage);
+    
+        visible.forEach((m, i) => {
+            const realIndex = start + i;
+    
             const el = document.createElement('div');
-            el.className = 'slider-item' + (i === 0 ? ' active' : '');
-            el.onclick = () => pick(i);
+            el.className = 'slider-item' + (realIndex === cur ? ' active' : '');
+            el.onclick = () => pick(realIndex);
+    
             el.innerHTML = `
                 <span class="slider-name">${m.name}</span>
-                <div class="slider-dot" style="${m.avatar ? `background-image:url('${m.avatar}')` : ''}"></div>`;
+                <div class="slider-dot" style="${m.avatar ? `background-image:url('${m.avatar}')` : ''}"></div>
+            `;
+    
             col.appendChild(el);
         });
+    
+        // ⬇️ КНОПКИ ПАГИНАЦИИ
+        const controls = document.createElement('div');
+        controls.style.marginTop = '15px';
+        controls.style.display = 'flex';
+        controls.style.gap = '10px';
+        controls.style.justifyContent = 'center';
+    
+        const prev = document.createElement('button');
+        prev.textContent = '←';
+        prev.onclick = () => {
+            if (page > 0) {
+                page--;
+                buildSlider();
+            }
+        };
+    
+        const next = document.createElement('button');
+        next.textContent = '→';
+        next.onclick = () => {
+            if ((page + 1) * perPage < members.length) {
+                page++;
+                buildSlider();
+            }
+        };
+    
+        controls.appendChild(prev);
+        controls.appendChild(next);
+        col.appendChild(controls);
     }
+
 
     function pick(i) {
         if (i === cur) return;
