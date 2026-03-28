@@ -625,7 +625,6 @@ footer {
 /* стрелки */
 .nav-btn {
     position: static;
-    transform: translateX(-50%);
     background: var(--accent-blue);
     border: none;
     padding: 8px 12px;
