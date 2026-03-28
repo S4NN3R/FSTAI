@@ -5,179 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FumoDub — Студия озвучки</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #192852;
-            --secondary-bg: #1d2d5f;
-            --accent-blue: #4facfe;
-            --text-color: #e0e6ed;
-            --text-dim: #a5b4fc;
-        }
-
-        * { box-sizing: border-box; } /* Важно для мобильной верстки */
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden; /* Защита от горизонтального скролла */
-        }
-
-        header {
-            padding: 60px 20px 40px;
-            text-align: center;
-            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(25,40,82,0) 100%);
-        }
-
-        /* Адаптивный размер заголовка */
-        h1 { 
-            font-size: clamp(2rem, 8vw, 3.5rem); 
-            color: var(--accent-blue); 
-            margin: 0 0 10px; 
-        }
-
-        .subtitle { 
-            font-weight: 300; 
-            font-size: clamp(0.9rem, 4vw, 1.2rem); 
-            opacity: 0.8; 
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap; /* Позволяет кнопкам переноситься на новую строку */
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        nav a, .btn-stub {
-            text-decoration: none;
-            color: var(--text-color);
-            padding: 10px 18px;
-            border: 1px solid var(--accent-blue);
-            border-radius: 5px;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-
-        nav a:hover { background: var(--accent-blue); color: #192852; }
-
-        .container { 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 20px; 
-        }
-
-        /* Адаптивная секция приложений */
-        .apps-section {
-            background: var(--secondary-bg);
-            padding: clamp(20px, 5vw, 40px);
-            border-radius: 15px;
-            display: flex;
-            flex-direction: row; /* По умолчанию в ряд (ПК) */
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .apps-info { flex: 1; }
-        .apps-preview { flex: 1; text-align: center; }
-        .apps-preview img { 
-            max-width: 100%; 
-            height: auto;
-            border-radius: 10px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .btn-group { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 12px; 
-            margin-top: 25px; 
-        }
-
-        .btn-app {
-            background: var(--accent-blue);
-            color: #192852;
-            padding: 12px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: transform 0.2s;
-            flex-grow: 1; /* Кнопки растягиваются на мобилках */
-            text-align: center;
-        }
-
-        /* Сетки (Grid) */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-        }
-
-        /* Стили карточек */
-        .member-card {
-            background: rgba(255,255,255,0.05);
-            padding: 20px 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .member-card .avatar {
-            width: 60px; height: 60px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            margin: 0 auto 12px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .work-item { position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 2/3; }
-        .work-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .work-item p {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            text-align: center; background: rgba(0,0,0,0.8); margin: 0; padding: 8px 5px;
-            font-size: 0.85rem;
-        }
-
-        /* МЕДИА-ЗАПРОСЫ (Адаптация под телефоны) */
-        @media (max-width: 768px) {
-            header { padding: 40px 15px; }
-            
-            .apps-section {
-                flex-direction: column; /* Текст и картинка друг под другом */
-                text-align: center;
-            }
-
-            .btn-group {
-                justify-content: center;
-            }
-
-            nav {
-                gap: 8px;
-            }
-
-            nav a {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-        }
-
-        footer { text-align: center; padding: 40px; opacity: 0.6; font-size: 0.8rem; }
-    </style>
+    <link rel="stylesheet" href="./Sources/style.css">
 </head>
 <body>
 
@@ -187,7 +15,7 @@
     <nav>
         <a href="#about">О нас</a>
         <a href="#works">Работы</a>
-        <a href="#team">Команда</a>
+        <a href="team.html">Команда</a>
         <a href="#" class="btn-stub">Игры (Скоро)</a>
     </nav>
 </header>
@@ -201,27 +29,23 @@
             <div class="btn-group">
                 <a href="#" class="btn-app">Веб-приложение</a>
                 <a href="#" class="btn-app">Android APK</a>
-                <a href="#" class="btn-app" style="background: var(--text-dim);">J2ME (Jar)</a>
+                <a href="#" class="btn-app btn-app--muted">J2ME (Jar)</a>
             </div>
         </div>
         <div class="apps-preview">
             <img src="./Sources/500.jpg" alt="Превью приложения">
-            <p style="font-size: 0.75rem; margin-top: 10px; color: var(--text-dim);">Интерфейс адаптирован под все устройства</p>
+            <p class="caption">Интерфейс адаптирован под все устройства</p>
         </div>
     </section>
 
-    <section id="team" style="margin-bottom: 60px;">
-        <h2 style="border-left: 4px solid var(--accent-blue); padding-left: 15px; font-size: 1.5rem;">Наши Участники</h2>
-        <div class="team-grid">
-            <div class="member-card"><div class="avatar" style="background-image: url('./Sources/1.jpg');"></div><strong>Admin</strong><p style="font-size: 0.8rem;">Основатель</p></div>
-            <div class="member-card"><div class="avatar"></div><strong>Voice Actor</strong><p style="font-size: 0.8rem;">Даббер</p></div>
-            <div class="member-card"><div class="avatar"></div><strong>Translator</strong><p style="font-size: 0.8rem;">Переводчик</p></div>
-            <div class="member-card"><div class="avatar"></div><strong>Sound Dev</strong><p style="font-size: 0.8rem;">Звук</p></div>
-        </div>
+    <section id="team" class="team-section team-teaser">
+        <h2 class="section-title">Наши Участники</h2>
+        <p style="color: rgba(224,230,237,0.65); font-family: 'Roboto', sans-serif; font-weight: 300; margin: 12px 0 24px;">Познакомьтесь с людьми, которые стоят за каждым голосом. У каждого участника — своя история и роль в студии.</p>
+        <a href="team.html" class="btn-app" style="display: inline-block; max-width: 260px;">Перейти к команде →</a>
     </section>
 
     <section id="works">
-        <h2 style="border-left: 4px solid var(--accent-blue); padding-left: 15px; font-size: 1.5rem;">Примеры работ</h2>
+        <h2 class="section-title">Примеры работ</h2>
         <div class="works-grid">
             <div class="work-item">
                 <img src="./Sources/2.jpg" alt="Anime">
