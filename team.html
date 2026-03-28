@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FumoDub — Команда</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Sources/style.css">
+    <style>
+
+        /* ========================================
+           TEAM PAGE LAYOUT
+        ======================================== */
+
+        .team-stage {
+            display: grid;
+            grid-template-columns: 200px 1fr 380px;
+            min-height: calc(100vh - 220px);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 24px 50px;
+            align-items: stretch;
+        }
+
+        /* ========================================
+           LEFT — вертикальный слайдер с линией
+        ======================================== */
+
+        .slider-col {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 0;
+        }
+
+        /* Вертикальная линия справа от кружков */
+        .slider-col::after {
+            content: '';
+            position: absolute;
+            right: 24px;
+            top: 8%;
+            height: 84%;
+            width: 2px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(79,172,254,0.45) 15%,
+                rgba(79,172,254,0.45) 85%,
+                transparent
+            );
+        }
+
+        .slider-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        /* Имя — слева, выровнено вправо к кружку */
+        .slider-name {
+            flex: 1;
+            text-align: right;
+            padding-right: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            transition: color 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .slider-item:hover .slider-name { color: var(--text-color); }
+        .slider-item.active .slider-name {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        /* Кружок-аватар на линии */
+        .slider-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background-color: rgba(79,172,254,0.12);
+            background-size: cover;
+            background-position: center;
+            border: 2px solid rgba(79,172,254,0.22);
+            position: relative;
+            z-index: 2;
+            transition: all 0.32s ease;
+        }
+
+        .slider-item:hover .slider-dot {
+            border-color: rgba(79,172,254,0.55);
+            transform: scale(1.08);
+        }
+
+        .slider-item.active .slider-dot {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(79,172,254,0.14), 0 0 22px rgba(79,172,254,0.38);
+            transform: scale(1.18);
+        }
+
+        /* ========================================
+           CENTER — персонаж PNG во весь рост
+        ======================================== */
+
+        .char-col {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Glow под ногами */
+        .char-col::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 380px;
+            height: 180px;
+            background: radial-gradient(ellipse, rgba(79,172,254,0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .char-img {
+            position: relative;
+            z-index: 1;
+            max-height: 570px;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 28px 56px rgba(79,172,254,0.28));
+            transition: opacity 0.4s ease, transform 0.42s ease;
+            transform-origin: bottom center;
+        }
+
+        .char-img.fade-out {
+            opacity: 0;
+            transform: scale(0.95) translateY(18px);
+        }
+
+        .char-placeholder {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            height: 460px;
+            color: var(--text-dim);
+            opacity: 0.18;
+        }
+
+        .char-placeholder svg { width: 90px; height: 90px; }
+        .char-placeholder p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        /* ========================================
+           RIGHT — info panel
+        ======================================== */
+
+        .info-col {
+            padding: 8px 0 8px 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: opacity 0.35s ease;
+        }
+
+        .info-col.fade-out { opacity: 0; }
+
+        /* ИМЯ — большой прямоугольник сверху */
+        .name-block {
+            background: rgba(79,172,254,0.09);
+            border: 1.5px solid rgba(79,172,254,0.35);
+            border-radius: 14px;
+            padding: 18px 26px;
+        }
+
+        .name-block h2 {
+            margin: 0 0 5px;
+            font-size: clamp(1.7rem, 2.4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.1;
+        }
+
+        .name-block .role-tag {
+            font-size: 0.76rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+        }
+
+        /* СТРОКА: play + соцсети — вторая строка сразу под именем */
+        .action-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .play-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 20px rgba(79,172,254,0.35);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 32px rgba(79,172,254,0.55);
+        }
+
+        .play-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #192852;
+            margin-left: 2px;
+        }
+
+        .play-btn.playing svg.icon-play  { display: none; }
+        .play-btn:not(.playing) svg.icon-pause { display: none; }
+
+        .play-label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+        }
+
+        /* Иконки соцсетей — круглые кнопки в ряд */
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .soc-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(79,172,254,0.28);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-dim);
+            transition: all 0.24s;
+        }
+
+        .soc-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: rgba(79,172,254,0.1);
+            transform: translateY(-2px);
+        }
+
+        .soc-btn svg { width: 16px; height: 16px; }
+
+        /* Анимированная волна */
+        .wave-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .waveform {
+            flex: 1;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .wave-bar {
+            flex: 1;
+            min-width: 3px;
+            border-radius: 2px;
+            background: rgba(79,172,254,0.2);
+            transition: background 0.2s;
+        }
+
+        .playing-anim .wave-bar {
+            background: var(--accent-blue);
+            animation: wvpulse 0.72s ease-in-out infinite alternate;
+        }
+
+        .wave-bar:nth-child(2n)  { animation-delay: 0.07s; }
+        .wave-bar:nth-child(3n)  { animation-delay: 0.17s; }
+        .wave-bar:nth-child(4n)  { animation-delay: 0.27s; }
+        .wave-bar:nth-child(5n)  { animation-delay: 0.12s; }
+        .wave-bar:nth-child(7n)  { animation-delay: 0.22s; }
+
+        @keyframes wvpulse {
+            from { transform: scaleY(0.3); }
+            to   { transform: scaleY(1); }
+        }
+
+        .voice-time {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            font-family: 'Roboto', monospace;
+            white-space: nowrap;
+        }
+
+        /* БОЛЬШОЙ БЛОК ОПИСАНИЯ */
+        .desc-block {
+            flex: 1;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(79,172,254,0.13);
+            border-radius: 14px;
+            padding: 22px 24px;
+            min-height: 160px;
+        }
+
+        .desc-block p {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 0.94rem;
+            line-height: 1.78;
+            color: rgba(224,230,237,0.7);
+        }
+
+        /* ========================================
+           АНИМАЦИЯ ПОЯВЛЕНИЯ
+        ======================================== */
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0);    }
+        }
+
+        .slider-col { animation: fadeUp 0.45s ease both; }
+        .char-col   { animation: fadeUp 0.45s 0.07s ease both; }
+        .info-col   { animation: fadeUp 0.45s 0.15s ease both; }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 900px) {
+            .team-stage {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .slider-col {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 8px;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .slider-col::after { display: none; }
+
+            .slider-item {
+                flex-direction: column;
+                align-items: center;
+                padding: 6px 10px;
+                gap: 6px;
+            }
+
+            .slider-name {
+                text-align: center;
+                padding-right: 0;
+                font-size: 0.72rem;
+            }
+
+            .char-col { order: -1; }
+            .char-img { max-height: 300px; }
+            .info-col { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FumoDub</h1>
+    <p class="subtitle">Голоса ваших любимых миров: Аниме, Дунхуа и Игры</p>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="index.html#works">Работы</a>
+        <a href="team.html" style="background:var(--accent-blue);color:#192852;">Команда</a>
+        <a href="#" class="btn-stub">Игры (Скоро)</a>
+    </nav>
+</header>
+
+<div class="team-stage">
+
+    <!-- LEFT: вертикальный слайдер -->
+    <aside class="slider-col" id="sliderCol"></aside>
+
+    <!-- CENTER: PNG персонаж -->
+    <main class="char-col">
+        <img class="char-img" id="charImg" src="" alt="" />
+        <div class="char-placeholder" id="charPh" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="12" cy="7" r="4"/>
+                <path d="M5.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/>
+            </svg>
+            <p>PNG персонажа</p>
+        </div>
+    </main>
+
+    <!-- RIGHT: инфо-панель -->
+    <aside class="info-col" id="infoCol">
+
+        <!-- 1. Имя + роль -->
+        <div class="name-block">
+            <h2 id="infoName"></h2>
+            <span class="role-tag" id="infoRole"></span>
+        </div>
+
+        <!-- 2. Play + соцсети -->
+        <div class="action-row">
+            <button class="play-btn" id="playBtn" onclick="togglePlay()">
+                <svg class="icon-play"  viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <span class="play-label">Play</span>
+            <div class="social-icons" id="infoSocials"></div>
+        </div>
+
+        <!-- 3. Волна -->
+        <div class="wave-row">
+            <div class="waveform" id="waveform"></div>
+            <span class="voice-time" id="voiceTime">0:00</span>
+        </div>
+
+        <!-- 4. Описание — большой блок -->
+        <div class="desc-block">
+            <p id="infoDesc"></p>
+        </div>
+
+    </aside>
+</div>
+
+<footer>
+    &copy; 2026 Студия FumoDub. Все права защищены.
+</footer>
+
+<script>
+    /* =====================
+       ДАННЫЕ
+    ===================== */
+    const members = [
+        {
+            name:    "Admin",
+            role:    "Основатель / Режиссёр",
+            desc:    "Основатель студии FumoDub. Отвечает за общее направление проектов, подбор материала и руководство дублированием. Именно он задаёт тон и атмосферу каждой работы.",
+            avatar:  "./Sources/1.jpg",
+            png:     "./Sources/1.jpg",
+            socials: [{ url:"#", icon:"tg", label:"Telegram" }, { url:"#", icon:"vk", label:"VK" }],
+            voice:   null
+        },
+        {
+            name:    "Voice Actor",
+            role:    "Голосовой актёр",
+            desc:    "Профессиональный актёр озвучки. Работает с широким диапазоном персонажей — от харизматичных героев до коварных злодеев. В каждую роль вкладывает душу и характер.",
+            avatar:  "",
+            png:     "",
+            socials: [{ url:"#", icon:"tg", label:"Telegram" }],
+            voice:   null
+        },
+        {
+            name:    "Translator",
+            role:    "Переводчик",
+            desc:    "Переводит диалоги с японского и китайского, сохраняя культурный контекст и адаптируя речевые паттерны для естественного русского звучания.",
+            avatar:  "",
+            png:     "",
+            socials: [{ url:"#", icon:"vk", label:"VK" }],
+            voice:   null
+        },
+        {
+            name:    "Sound Dev",
+            role:    "Звукорежиссёр",
+            desc:    "Отвечает за сведение, очистку и мастеринг аудио. Создаёт атмосферу, в которой голоса живут органично внутри оригинальной звуковой дорожки.",
+            avatar:  "",
+            png:     "",
+            socials: [{ url:"#", icon:"tg", label:"Telegram" }, { url:"#", icon:"yt", label:"YouTube" }],
+            voice:   null
+        },
+        {
+            name:    "Участник 5",
+            role:    "Роль",
+            desc:    "Описание участника команды. Расскажите о нём здесь — чем он занимается и что привносит в студию.",
+            avatar:  "",
+            png:     "",
+            socials: [],
+            voice:   null
+        },
+    ];
+
+    const ICONS = {
+        tg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 1 0 24 12 12 12 0 0 0 11.944 0zm3.163 7.077-4.575 9.46c-.306.632-.694.79-1.062.79-.35 0-.69-.14-.956-.43L6.47 14.6l-1.257-1.255c-.37-.37-.37-.97 0-1.34l4.34-3.65c.09-.077.12-.22.063-.33-.057-.11-.187-.158-.31-.117L4.9 10.74c-.6.21-1.22-.13-1.38-.72-.16-.59.19-1.2.78-1.38l10.04-3.44c.51-.18 1.04.18.97.72l-.003.025z"/></svg>`,
+        vk: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-.804-1.49.398v1.578c0 .354-.112.566-1.044.566-1.538 0-3.245-.93-4.443-2.664C6.56 12.54 6 10.05 6 9.5c0-.343.12-.663.476-.663h1.745c.353 0 .488.16.624.54.688 1.98 1.844 3.713 2.32 3.713.177 0 .258-.08.258-.52V10.03c-.057-1.005-.59-1.09-.59-1.447 0-.21.17-.422.44-.422h2.74c.298 0 .4.158.4.498v2.673c0 .296.133.4.216.4.177 0 .325-.104.65-.43 1.01-1.132 1.73-2.875 1.73-2.875.096-.248.298-.478.652-.478h1.745c.524 0 .638.27.524.637-.218.99-2.34 4.003-2.34 4.003-.186.302-.252.437 0 .775.177.254.757.778 1.144 1.249.71.836 1.253 1.537 1.4 2.023.135.478-.115.72-.524.72z"/></svg>`,
+        yt:  `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>`,
+    };
+
+    let cur = 0, audio = null, playing = false, demoT = null;
+
+    /* SLIDER */
+    function buildSlider() {
+        const col = document.getElementById('sliderCol');
+        col.innerHTML = '';
+        members.forEach((m, i) => {
+            const el = document.createElement('div');
+            el.className = 'slider-item' + (i === 0 ? ' active' : '');
+            el.onclick = () => pick(i);
+            el.innerHTML = `
+                <span class="slider-name">${m.name}</span>
+                <div class="slider-dot" style="${m.avatar ? `background-image:url('${m.avatar}')` : ''}"></div>`;
+            col.appendChild(el);
+        });
+    }
+
+    /* PICK */
+    function pick(i) {
+        if (i === cur) return;
+        stopAudio();
+        const img = document.getElementById('charImg');
+        const col = document.getElementById('infoCol');
+        img.classList.add('fade-out');
+        col.classList.add('fade-out');
+        setTimeout(() => {
+            cur = i;
+            render(members[i]);
+            img.classList.remove('fade-out');
+            col.classList.remove('fade-out');
+            document.querySelectorAll('.slider-item')
+                .forEach((el, idx) => el.classList.toggle('active', idx === i));
+        }, 370);
+    }
+
+    /* RENDER */
+    function render(m) {
+        const img = document.getElementById('charImg');
+        const ph  = document.getElementById('charPh');
+        if (m.png) {
+            img.src = m.png; img.alt = m.name;
+            img.style.display = ''; ph.style.display = 'none';
+        } else {
+            img.style.display = 'none'; ph.style.display = 'flex';
+        }
+        document.getElementById('infoName').textContent = m.name;
+        document.getElementById('infoRole').textContent = m.role;
+        document.getElementById('infoDesc').textContent = m.desc;
+        document.getElementById('infoSocials').innerHTML =
+            m.socials.map(s =>
+                `<a href="${s.url}" class="soc-btn" title="${s.label}" target="_blank" rel="noopener">${ICONS[s.icon]||''}</a>`
+            ).join('');
+        buildWave();
+    }
+
+    /* WAVE */
+    function buildWave() {
+        const h = [32,60,75,44,88,65,40,70,90,54,46,80,58,35,72,94,50,64,38,76,56,86,42,60,68,34,80,90,48,66];
+        document.getElementById('waveform').innerHTML =
+            h.map(v => `<div class="wave-bar" style="height:${v}%"></div>`).join('');
+    }
+
+    /* PLAY */
+    function togglePlay() {
+        const m   = members[cur];
+        const btn = document.getElementById('playBtn');
+        const wf  = document.getElementById('waveform');
+
+        if (!m.voice) {
+            if (playing) { stopAudio(); return; }
+            playing = true; btn.classList.add('playing'); wf.classList.add('playing-anim');
+            let t = 0;
+            demoT = setInterval(() => {
+                t++;
+                document.getElementById('voiceTime').textContent =
+                    `${Math.floor(t/60)}:${(t%60).toString().padStart(2,'0')}`;
+                if (t >= 30) stopAudio();
+            }, 1000);
+            return;
+        }
+
+        if (!audio) {
+            audio = new Audio(m.voice);
+            audio.addEventListener('ended', stopAudio);
+            audio.addEventListener('timeupdate', () => {
+                const t = Math.floor(audio.currentTime);
+                document.getElementById('voiceTime').textContent =
+                    `${Math.floor(t/60)}:${(t%60).toString().padStart(2,'0')}`;
+            });
+        }
+        if (playing) {
+            audio.pause(); playing = false;
+            btn.classList.remove('playing'); wf.classList.remove('playing-anim');
+        } else {
+            audio.play(); playing = true;
+            btn.classList.add('playing'); wf.classList.add('playing-anim');
+        }
+    }
+
+    function stopAudio() {
+        if (audio) { audio.pause(); audio.currentTime = 0; audio = null; }
+        if (demoT)  { clearInterval(demoT); demoT = null; }
+        playing = false;
+        document.getElementById('playBtn').classList.remove('playing');
+        document.getElementById('waveform').classList.remove('playing-anim');
+        document.getElementById('voiceTime').textContent = '0:00';
+    }
+
+    buildSlider();
+    render(members[0]);
+</script>
+</body>
+</html>
