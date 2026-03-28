@@ -633,12 +633,6 @@ footer {
     z-index: 10;
 }
 
-.nav-btn.up {
-    margin-bottom: 10px;
-}
-.nav-btn.down {
-    margin-top: auto;
-}
 
 @media (max-width: 768px) {
     .slider-track {
