@@ -624,7 +624,7 @@ footer {
 
 /* стрелки */
 .nav-btn {
-    position: absolute;
+    position: static;
     left: 50%;
     transform: translateX(-50%);
     background: var(--accent-blue);
@@ -635,8 +635,12 @@ footer {
     z-index: 10;
 }
 
-.nav-btn.up { top: 5px; }
-.nav-btn.down { bottom: 5px; }
+.nav-btn.up {
+    margin-bottom: 10px;
+}
+.nav-btn.down {
+    margin-top: auto;
+}
 
 @media (max-width: 768px) {
     .slider-track {
