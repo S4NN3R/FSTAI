@@ -169,7 +169,13 @@
             top: dir * scrollAmount,
             behavior: 'smooth'
         });
+        
+        setTimeout(updateNavButtons, 300);
     }
+    const slider = document.getElementById('sliderCol');
+    
+    slider.addEventListener('scroll', updateNavButtons);
+    window.addEventListener('resize', updateNavButtons);
     
     function scrollSliderX(dir) {
         const container = document.getElementById('sliderCol');
@@ -183,6 +189,8 @@
             left: dir * scrollAmount,
             behavior: 'smooth'
         });
+        
+        setTimeout(updateNavButtons, 300);
     }
     
     function pick(i) {
@@ -281,8 +289,57 @@
         document.getElementById('voiceTime').textContent = '0:00';
     }
 
+    function updateNavButtons() {
+        const container = document.getElementById('sliderCol');
+    
+        const isHorizontal = window.innerWidth <= 900; // как у тебя в адаптиве
+    
+        const maxScrollTop = container.scrollHeight - container.clientHeight;
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    
+        const scrollTop = container.scrollTop;
+        const scrollLeft = container.scrollLeft;
+    
+        const upBtn = document.querySelector('.nav-btn.up');
+        const downBtn = document.querySelector('.nav-btn.down');
+        const leftBtn = document.querySelector('.nav-btn.left');
+        const rightBtn = document.querySelector('.nav-btn.right');
+    
+        // вертикальный режим
+        if (!isHorizontal) {
+            if (scrollTop <= 5) {
+                upBtn.classList.add('hidden');
+            } else {
+                upBtn.classList.remove('hidden');
+            }
+    
+            if (scrollTop >= maxScrollTop - 5) {
+                downBtn.classList.add('hidden');
+            } else {
+                downBtn.classList.remove('hidden');
+            }
+        }
+    
+        // горизонтальный режим (мобилка)
+        if (isHorizontal) {
+            if (scrollLeft <= 5) {
+                leftBtn.classList.add('hidden');
+            } else {
+                leftBtn.classList.remove('hidden');
+            }
+    
+            if (scrollLeft >= maxScrollLeft - 5) {
+                rightBtn.classList.add('hidden');
+            } else {
+                rightBtn.classList.remove('hidden');
+            }
+        }
+    }
+
+
     buildSlider();
     render(members[0]);
+    updateNavButtons();
 </script>
 </body>
 </html>
