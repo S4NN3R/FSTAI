@@ -1,0 +1,890 @@
+:root {
+    --bg-color: #192852;
+    --secondary-bg: #1d2d5f;
+    --accent-blue: #4facfe;
+    --text-color: #e0e6ed;
+    --text-dim: #a5b4fc;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+header {
+    padding: 60px 20px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(25,40,82,0) 100%);
+}
+
+h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: var(--accent-blue);
+    margin: 0 0 10px;
+}
+
+.subtitle {
+    font-weight: 300;
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+nav a,
+.btn-stub {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 18px;
+    border: 1px solid var(--accent-blue);
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+nav a:hover { background: var(--accent-blue); color: #192852; }
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.apps-section {
+    background: var(--secondary-bg);
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.apps-info { flex: 1; }
+.apps-preview { flex: 1; text-align: center; }
+
+.apps-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.apps-preview .caption {
+    font-size: 0.75rem;
+    margin-top: 10px;
+    color: var(--text-dim);
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-app {
+    background: var(--accent-blue);
+    color: #192852;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.btn-app--muted {
+    background: var(--text-dim);
+}
+
+.team-section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    border-left: 4px solid var(--accent-blue);
+    padding-left: 15px;
+    font-size: 1.5rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.member-card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.member-card .avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    background-size: cover;
+    background-position: center;
+}
+
+.member-card p {
+    font-size: 0.8rem;
+}
+
+.work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 2/3;
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.work-item p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: rgba(0,0,0,0.8);
+    margin: 0;
+    padding: 8px 5px;
+    font-size: 0.85rem;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.6;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    header { padding: 40px 15px; }
+
+    .apps-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn-group {
+        justify-content: center;
+    }
+
+    nav { gap: 8px; }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ================================================
+   TEAM PAGE — team.html
+================================================ */
+
+.team-stage {
+    display: grid;
+    grid-template-columns: 200px 1fr 380px;
+    min-height: calc(100vh - 220px);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 24px 50px;
+    align-items: stretch;
+}
+
+/* --- LEFT: вертикальный слайдер --- */
+
+.slider-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Вертикальная линия справа от кружков */
+.slider-col::after {
+    content: '';
+    position: absolute;
+    right: 24px;
+    top: 8%;
+    height: 84%;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(79,172,254,0.45) 15%,
+        rgba(79,172,254,0.45) 85%,
+        transparent
+    );
+}
+
+.slider-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+    position: relative;
+}
+
+.slider-name {
+    flex: 1;
+    text-align: right;
+    padding-right: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    transition: color 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.slider-item:hover .slider-name { color: var(--text-color); }
+
+.slider-item.active .slider-name {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
+.slider-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: rgba(79,172,254,0.12);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(79,172,254,0.22);
+    position: relative;
+    z-index: 2;
+    transition: all 0.32s ease;
+}
+
+.slider-item:hover .slider-dot {
+    border-color: rgba(79,172,254,0.55);
+    transform: scale(1.08);
+}
+
+.slider-item.active .slider-dot {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(79,172,254,0.14), 0 0 22px rgba(79,172,254,0.38);
+    transform: scale(1.18);
+}
+
+/* --- CENTER: персонаж PNG --- */
+
+.char-col {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* overflow намеренно не hidden — чтобы glow не обрезался */
+    padding-bottom: 30px;
+}
+
+/* Glow — эллипс под ногами, не обрезается */
+.char-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;
+    height: 120px;
+    background: radial-gradient(ellipse, rgba(79,172,254,0.22) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(10px);
+}
+
+.char-img {
+    position: relative;
+    z-index: 1;
+    max-height: 560px;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(79,172,254,0.2));
+    transition: opacity 0.4s ease, transform 0.42s ease;
+    transform-origin: bottom center;
+}
+
+.char-img.fade-out {
+    opacity: 0;
+    transform: scale(0.95) translateY(18px);
+}
+
+.char-placeholder {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 460px;
+    color: var(--text-dim);
+    opacity: 0.18;
+}
+
+.char-placeholder svg { width: 90px; height: 90px; }
+
+.char-placeholder p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* --- RIGHT: инфо-панель --- */
+
+.info-col {
+    padding: 8px 0 8px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: opacity 0.35s ease;
+}
+
+.info-col.fade-out { opacity: 0; }
+
+.name-block {
+    background: rgba(79,172,254,0.09);
+    border: 1.5px solid rgba(79,172,254,0.35);
+    border-radius: 14px;
+    padding: 18px 26px;
+}
+
+.name-block h2 {
+    margin: 0 0 5px;
+    font-size: clamp(1.7rem, 2.4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.1;
+}
+
+.name-block .role-tag {
+    font-size: 0.76rem;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+}
+
+.action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.play-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(79,172,254,0.35);
+}
+
+.play-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 32px rgba(79,172,254,0.55);
+}
+
+.play-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #192852;
+    margin-left: 2px;
+}
+
+.play-btn.playing svg.icon-play  { display: none; }
+.play-btn:not(.playing) svg.icon-pause { display: none; }
+
+.play-label {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.soc-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(79,172,254,0.28);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: all 0.24s;
+}
+
+.soc-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    background: rgba(79,172,254,0.1);
+    transform: translateY(-2px);
+}
+
+.soc-btn svg { width: 16px; height: 16px; }
+
+.wave-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.waveform {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.wave-bar {
+    flex: 1;
+    min-width: 3px;
+    border-radius: 2px;
+    background: rgba(79,172,254,0.2);
+    transition: background 0.2s;
+}
+
+.playing-anim .wave-bar {
+    background: var(--accent-blue);
+    animation: wvpulse 0.72s ease-in-out infinite alternate;
+}
+
+.wave-bar:nth-child(2n) { animation-delay: 0.07s; }
+.wave-bar:nth-child(3n) { animation-delay: 0.17s; }
+.wave-bar:nth-child(4n) { animation-delay: 0.27s; }
+.wave-bar:nth-child(5n) { animation-delay: 0.12s; }
+.wave-bar:nth-child(7n) { animation-delay: 0.22s; }
+
+@keyframes wvpulse {
+    from { transform: scaleY(0.3); }
+    to   { transform: scaleY(1); }
+}
+
+.voice-time {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-family: 'Roboto', monospace;
+    white-space: nowrap;
+}
+
+.desc-block {
+    flex: 1;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(79,172,254,0.13);
+    border-radius: 14px;
+    padding: 22px 24px;
+    min-height: 160px;
+}
+
+.desc-block p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 0.94rem;
+    line-height: 1.78;
+    color: rgba(224,230,237,0.7);
+}
+
+/* --- Анимация появления --- */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+.slider-col { animation: fadeUp 0.45s ease both; }
+.char-col   { animation: fadeUp 0.45s 0.07s ease both; }
+.info-col   { animation: fadeUp 0.45s 0.15s ease both; }
+
+/* --- Responsive team --- */
+
+@media (max-width: 900px) {
+    .team-stage {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .slider-col {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .slider-col::after { display: none; }
+
+    .slider-item {
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 10px;
+        gap: 6px;
+    }
+
+    .slider-name {
+        text-align: center;
+        padding-right: 0;
+        font-size: 0.72rem;
+    }
+
+    .char-col { order: -1; }
+    .char-img { max-height: 300px; }
+    .info-col { padding: 0; }
+}
+
+/* ================================================
+   GAMES PAGE — games.html
+================================================ */
+
+/* Волновой разделитель под хедером */
+.wave-divider {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-top: -2px;
+}
+
+.wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+}
+
+/* Общий контейнер страницы игр */
+.games-page-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+}
+
+/* ------------------------------------------------
+   СЕКЦИЯ СБОРЫ (краудфандинг)
+------------------------------------------------ */
+
+.section-heading {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 48px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(79,172,254,0.3), transparent);
+}
+
+/* Сетка карточек сбора */
+.funding-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 22px;
+}
+
+/* Карточка сбора */
+.fund-card {
+    background: var(--secondary-bg);
+    border: 1px solid rgba(79,172,254,0.12);
+    border-radius: 16px;
+    display: flex;
+    gap: 18px;
+    padding: 18px;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.fund-card:hover {
+    border-color: rgba(79,172,254,0.35);
+    transform: translateY(-3px);
+}
+
+/* Обложка игры в карточке сбора */
+.fund-cover {
+    width: 90px;
+    min-width: 90px;
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    background: rgba(79,172,254,0.1);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.fund-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.fund-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.fund-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fund-desc {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    color: rgba(224,230,237,0.6);
+    line-height: 1.5;
+    margin: 0;
+    /* Обрезаем на 3 строки */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Прогресс-бар */
+.fund-progress-wrap {
+    margin-top: auto;
+}
+
+.fund-bar-track {
+    width: 100%;
+    height: 5px;
+    background: rgba(79,172,254,0.15);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.fund-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), #00f2fe);
+    border-radius: 3px;
+    transition: width 0.8s ease;
+}
+
+.fund-amounts {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.fund-amounts strong {
+    color: var(--accent-blue);
+}
+
+.btn-support {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    align-self: flex-start;
+}
+
+.btn-support:hover {
+    background: var(--accent-blue);
+    color: #192852;
+}
+
+/* ------------------------------------------------
+   СЕКЦИЯ ОЗВУЧЕННЫЕ ИГРЫ
+------------------------------------------------ */
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.game-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: rgba(79,172,254,0.07);
+    border: 1px solid rgba(79,172,254,0.1);
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(79,172,254,0.4);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+}
+
+.game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.game-card:hover img {
+    transform: scale(1.06);
+}
+
+/* Подпись снизу */
+.game-card-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 10px 10px;
+    background: linear-gradient(to top, rgba(10,15,40,0.95) 0%, transparent 100%);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Плашка "Скоро" / статус */
+.game-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--accent-blue);
+    color: #192852;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.game-badge--done {
+    background: rgba(79,172,254,0.2);
+    color: var(--accent-blue);
+    border: 1px solid rgba(79,172,254,0.4);
+}
+
+/* Заглушка без обложки */
+.game-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-dim);
+    opacity: 0.3;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.game-card-placeholder svg {
+    width: 36px;
+    height: 36px;
+}
+
+/* ------------------------------------------------
+   АДАПТИВ
+------------------------------------------------ */
+
+@media (max-width: 768px) {
+    .funding-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .fund-card {
+        flex-direction: column;
+    }
+
+    .fund-cover {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+}
