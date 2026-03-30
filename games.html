@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FumoDub — Игры</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Sources/style.css">
+</head>
+<body>
+
+<header>
+    <h1>FumoDub</h1>
+    <p class="subtitle">Голоса ваших любимых миров: Аниме, Дунхуа и Игры</p>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="index.html#works">Работы</a>
+        <a href="team.html">Команда</a>
+        <a href="games.html" style="background:var(--accent-blue);color:#192852;">Игры</a>
+    </nav>
+</header>
+
+<!-- Волновой разделитель -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 C1320,48 1380,36 1440,30 L1440,60 L0,60 Z"
+            fill="rgba(79,172,254,0.07)"
+        />
+        <path
+            d="M0,40 C180,15 360,55 540,35 C720,15 900,50 1080,30 C1260,10 1360,42 1440,38"
+            fill="none"
+            stroke="rgba(79,172,254,0.25)"
+            stroke-width="1.5"
+        />
+    </svg>
+</div>
+
+<div class="games-page-wrap">
+
+    <!-- ==================== СБОРЫ ==================== -->
+    <h2 class="section-heading">Сборы</h2>
+
+    <div class="funding-grid" id="fundingGrid">
+        <!-- JS рендер -->
+    </div>
+
+    <!-- ==================== ОЗВУЧЕННЫЕ ИГРЫ ==================== -->
+    <h2 class="section-heading">Озвученные игры</h2>
+
+    <div class="games-grid" id="gamesGrid">
+        <!-- JS рендер -->
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 Студия FumoDub. Все права защищены.
+</footer>
+
+<script>
+    /* ============================================
+       ДАННЫЕ — замените на реальные
+    ============================================ */
+
+    const fundings = [
+        {
+            name:    "Название игры",
+            desc:    "Описание проекта сбора. Расскажите о чём игра и зачем нужна ваша поддержка для её озвучки.",
+            cover:   "",          // путь к обложке, например "./Sources/game1.jpg"
+            raised:  100,         // собрано ₽
+            goal:    750000,      // цель ₽
+            url:     "#"
+        },
+        {
+            name:    "Второй проект",
+            desc:    "Ещё один проект, который ждёт вашей поддержки. Помогите студии озвучить эту замечательную игру.",
+            cover:   "",
+            raised:  45000,
+            goal:    200000,
+            url:     "#"
+        },
+    ];
+
+    const games = [
+        { name: "Игра 1",   cover: "", badge: "Готово",  badgeDone: true  },
+        { name: "Игра 2",   cover: "", badge: "Готово",  badgeDone: true  },
+        { name: "Игра 3",   cover: "", badge: "В работе",badgeDone: false },
+        { name: "Игра 4",   cover: "", badge: "Готово",  badgeDone: true  },
+        { name: "Игра 5",   cover: "", badge: "Скоро",   badgeDone: false },
+        { name: "Игра 6",   cover: "", badge: "Готово",  badgeDone: true  },
+    ];
+
+    /* ============================================
+       РЕНДЕР СБОРОВ
+    ============================================ */
+
+    function formatMoney(n) {
+        return n.toLocaleString('ru-RU') + ' ₽';
+    }
+
+    function renderFundings() {
+        const grid = document.getElementById('fundingGrid');
+        grid.innerHTML = fundings.map(f => {
+            const pct = Math.min(100, Math.round(f.raised / f.goal * 100));
+            return `
+            <div class="fund-card">
+                <div class="fund-cover">
+                    ${f.cover
+                        ? `<img src="${f.cover}" alt="${f.name}">`
+                        : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0.2;">
+                               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                                   <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                               </svg>
+                           </div>`
+                    }
+                </div>
+                <div class="fund-info">
+                    <p class="fund-name">${f.name}</p>
+                    <p class="fund-desc">${f.desc}</p>
+                    <div class="fund-progress-wrap">
+                        <div class="fund-bar-track">
+                            <div class="fund-bar-fill" style="width:${pct}%"></div>
+                        </div>
+                        <div class="fund-amounts">
+                            <strong>${formatMoney(f.raised)}</strong>
+                            <span>из ${formatMoney(f.goal)} · ${pct}%</span>
+                        </div>
+                        <a href="${f.url}" class="btn-support">Поддержать</a>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    /* ============================================
+       РЕНДЕР ИГРОВОЙ СЕТКИ
+    ============================================ */
+
+    function renderGames() {
+        const grid = document.getElementById('gamesGrid');
+        grid.innerHTML = games.map(g => `
+            <div class="game-card">
+                ${g.cover
+                    ? `<img src="${g.cover}" alt="${g.name}">`
+                    : `<div class="game-card-placeholder">
+                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                               <rect x="2" y="3" width="20" height="14" rx="2"/>
+                               <path d="M8 21h8M12 17v4"/>
+                               <path d="M7 10h2M9 8v4M14 10h2"/>
+                           </svg>
+                           обложка
+                       </div>`
+                }
+                <div class="game-badge ${g.badgeDone ? 'game-badge--done' : ''}">${g.badge}</div>
+                <div class="game-card-label">${g.name}</div>
+            </div>`
+        ).join('');
+    }
+
+    renderFundings();
+    renderGames();
+</script>
+</body>
+</html>
