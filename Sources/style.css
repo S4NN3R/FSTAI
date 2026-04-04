@@ -1505,6 +1505,191 @@ footer {
 .form-submit:active { transform: translateY(0); }
 
 /* ================================================
+   ИСТОРИЯ — timeline
+================================================ */
+
+.history-section {
+    margin-bottom: 60px;
+}
+
+.timeline {
+    position: relative;
+    margin-top: 30px;
+    padding-left: 24px;
+    border-left: 2px solid rgba(79,172,254,0.3);
+}
+
+.tl-item {
+    position: relative;
+    margin-bottom: 32px;
+    padding-left: 20px;
+}
+
+.tl-item:last-child { margin-bottom: 0; }
+
+.tl-dot {
+    position: absolute;
+    left: -31px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--secondary-bg);
+    border: 2px solid var(--accent-blue);
+    flex-shrink: 0;
+}
+
+.tl-dot--accent {
+    background: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(79,172,254,0.5);
+}
+
+.tl-date {
+    display: inline-block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.tl-body p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 0.92rem;
+    color: rgba(224,230,237,0.8);
+    line-height: 1.65;
+}
+
+.tl-body strong {
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+/* ================================================
+   ИГРЫ — превью-секция
+================================================ */
+
+.games-preview-section {
+    background: var(--secondary-bg);
+    border-radius: 15px;
+    padding: clamp(20px, 5vw, 36px);
+    margin-bottom: 50px;
+}
+
+.games-preview-desc {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: rgba(224,230,237,0.7);
+    margin: 10px 0 22px;
+    max-width: 600px;
+}
+
+/* ================================================
+   ВСТУПИТЬ В КОМАНДУ — баннер
+================================================ */
+
+.join-banner {
+    margin-bottom: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(79,172,254,0.12) 0%, rgba(79,172,254,0.04) 100%);
+    border: 1px solid rgba(79,172,254,0.25);
+    padding: clamp(28px, 6vw, 52px) clamp(20px, 5vw, 48px);
+    text-align: center;
+}
+
+.join-tagline {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-blue);
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.join-title {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    margin: 0 0 14px;
+    color: var(--text-color);
+}
+
+.join-desc {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: rgba(224,230,237,0.7);
+    max-width: 520px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+}
+
+.btn-join {
+    display: inline-block;
+    background: var(--accent-blue);
+    color: #192852;
+    padding: 13px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-join:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* ================================================
+   СОЦСЕТИ
+================================================ */
+
+.socials-section {
+    text-align: center;
+    padding: 36px 20px 28px;
+    border-top: 1px solid rgba(79,172,254,0.12);
+}
+
+.socials-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: rgba(224,230,237,0.35);
+    margin: 0 0 18px;
+}
+
+.socials-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.soc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    transition: opacity 0.2s, transform 0.2s;
+    color: #fff;
+}
+
+.soc-btn:hover { opacity: 0.82; transform: translateY(-2px); }
+
+.soc-icon { font-size: 1rem; }
+
+.soc-tg { background: #2AABEE; color: #fff; }
+.soc-vk { background: #0077FF; color: #fff; }
+.soc-yt { background: #FF0000; color: #fff; }
+.soc-tt { background: #010101; border: 1px solid rgba(255,255,255,0.15); }
+
+/* ================================================
    АДАПТИВ
 ================================================ */
 
