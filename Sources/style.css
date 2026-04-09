@@ -40,12 +40,10 @@ header {
     align-items: center;
     gap: 2px;
 }
-
 .heart {
-    width: 0.9em;        /* размер как буква */
+    width: 0.9em;
     height: 0.9em;
-    fill: var(--text-color);       /* цвет сердца */
-    transform: translateY(0.05em); /* тонкая подгонка по вертикали */
+    fill: currentColor; 
 }
 
 h1 {
