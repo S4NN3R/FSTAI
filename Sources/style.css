@@ -36,8 +36,13 @@ header {
     font-family: 'Source Sans Pro';
     display: inline-flex;
     align-items: center;
+    font-weight: 400;
     gap: 2px;
-}.heart {
+}
+.logo span:first-child {
+    font-weight: 900;
+}
+.heart {
     width: 0.9em;
     height: 0.9em;
     fill: none;
