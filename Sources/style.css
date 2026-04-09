@@ -1659,7 +1659,7 @@ footer {
    ВСТУПИТЬ В КОМАНДУ — баннер
 ================================================ */
 
-.join-banner {
+.join-banner-main {
     margin-bottom: 60px;
     border-radius: 16px;
     background: linear-gradient(135deg, rgba(79,172,254,0.12) 0%, rgba(79,172,254,0.04) 100%);
@@ -1732,10 +1732,6 @@ footer {
 .join-page .btn-stub         { border-color: var(--join-accent); }
 .join-page nav a:hover       { background: var(--join-accent); color: var(--join-bg); }
 .join-page header            { background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(26,17,8,0) 100%); }
-
-/* Волна */
-.join-page .wave-divider-join path[fill]   { fill: rgba(255,144,18,0.07); }
-.join-page .wave-divider-join path[stroke] { stroke: rgba(255,144,18,0.28); }
 
 .join-wrap {
     max-width: 780px;
