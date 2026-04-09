@@ -588,6 +588,30 @@ footer {
 
 .social-icons .soc-btn svg { width: 16px; height: 16px; }
 
+.socials-section a.soc-btn {
+    width: auto !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(79,172,254,0.35) !important;
+    background: rgba(29,45,95,0.8) !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px !important;
+    text-decoration: none;
+    color: var(--text-color) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+
+.socials-section a.soc-btn:hover {
+    border-color: var(--accent-blue) !important;
+    color: var(--accent-blue) !important;
+    background: rgba(79,172,254,0.1) !important;
+    transform: translateY(-2px);
+}
+
 .wave-row {
     display: flex;
     align-items: center;
