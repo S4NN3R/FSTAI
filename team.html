@@ -54,14 +54,16 @@
             <h2 id="infoName"></h2>
             <span class="role-tag" id="infoRole"></span>
         </div>
-        <div class="action-row" id="playRow">
-            <button class="play-btn" id="playBtn" onclick="togglePlay()">
-                <svg class="icon-play"  viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-            </button>
-            <span class="play-label">Play</span>
+        <div style="display: flex">
+          <div class="action-row" id="playRow">
+              <button class="play-btn" id="playBtn" onclick="togglePlay()">
+                  <svg class="icon-play"  viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              <span class="play-label">Play</span>
+          </div>
+          <div class="social-icons" id="infoSocials"></div>
         </div>
-        <div class="social-icons" id="infoSocials"></div>
 
         <div class="wave-row">
             <div class="waveform" id="waveform"></div>
