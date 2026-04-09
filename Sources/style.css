@@ -39,12 +39,13 @@ header {
     display: inline-flex;
     align-items: center;
     gap: 2px;
-}
-.heart {
+}.heart {
     width: 0.9em;
     height: 0.9em;
-    fill: currentColor; 
+    fill: none;
+    stroke: currentColor;
 }
+
 
 h1 {
     font-size: clamp(2rem, 8vw, 3.5rem);
