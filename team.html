@@ -237,7 +237,18 @@
             m.socials.map(s =>
                 `<a href="${s.url}" class="soc-btn" title="${s.label}" target="_blank" rel="noopener">${ICONS[s.icon]||''}</a>`
             ).join('');
-        buildWave();
+    
+        // Показываем плеер только если есть голос
+        const actionRow = document.getElementById('playBtn').closest('.action-row');
+        const waveRow   = document.getElementById('waveform').closest('.wave-row');
+        if (m.voice) {
+            actionRow.style.display = '';
+            waveRow.style.display   = '';
+            buildWave();
+        } else {
+            actionRow.style.display = 'none';
+            waveRow.style.display   = 'none';
+        }
     }
 
     function buildWave() {
