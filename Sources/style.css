@@ -32,6 +32,10 @@ header {
     background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(25,40,82,0) 100%);
 }
 
+.logo {
+    font-family: 'Source Sans Pro';
+}
+
 h1 {
     font-size: clamp(2rem, 8vw, 3.5rem);
     color: var(--accent-blue);
