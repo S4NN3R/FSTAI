@@ -34,6 +34,18 @@ header {
 
 .logo {
     font-family: 'Source Sans Pro';
+    font-weight: 900;
+    font-size: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.heart {
+    width: 0.9em;        /* размер как буква */
+    height: 0.9em;
+    fill: var(--text-color);       /* цвет сердца */
+    transform: translateY(0.05em); /* тонкая подгонка по вертикали */
 }
 
 h1 {
