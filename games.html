@@ -175,6 +175,22 @@ async function loadTargets() {
     }
 }
 
+function updateFundingAmounts() {
+    fundings.forEach(f => {
+        const pct = Math.min(100, Math.round(f.raised / f.goal * 100));
+
+        // находим карточку по id
+        const card = document.querySelector(`[onclick*="'${f.id}'"]`);
+        if (!card) return;
+
+        const fill    = card.querySelector('.fund-bar-fill');
+        const amounts = card.querySelector('.fund-amounts');
+
+        if (fill)    fill.style.width = pct + '%';
+        if (amounts) amounts.innerHTML = `<strong>${fmt(f.raised)}</strong><span>из ${fmt(f.goal)} · ${pct}%</span>`;
+    });
+}
+
 function renderFundings() {
     const grid = document.getElementById('fundingGrid');
     grid.innerHTML = fundings.map(f => {
@@ -386,8 +402,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 /* ================================================================
    INIT
 ================================================================ */
-loadTargets().then(() => renderFundings());
+renderFundings();
 renderGames();
+loadTargets().then(() => updateFundingAmounts());
 </script>
 </body>
 </html>
