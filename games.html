@@ -242,56 +242,25 @@ function fmt(n) { return n.toLocaleString('ru-RU') + ' ₽'; }
 /* ================================================================
    РЕНДЕР СБОРОВ
 ================================================================ */
-function renderFundings() {
-    const grid = document.getElementById('fundingGrid');
-    grid.innerHTML = fundings.map(f => {
-        const pct = Math.min(100, Math.round(f.raised / f.goal * 100));
-        return `
-        <div class="fund-card" onclick="openModal('funding','${f.id}')" style="cursor:pointer;">
-            <div class="fund-cover">
-                ${f.cover
-                    ? `<img src="${f.cover}" alt="${f.name}">`
-                    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0.18;">
-                           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                               <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-                           </svg>
-                       </div>`
-                }
-            </div>
-            <div class="fund-info">
-                <p class="fund-name">${f.name}</p>
-                <p class="fund-desc">${f.desc}</p>
-                <div class="fund-progress-wrap">
-                    <div class="fund-bar-track"><div class="fund-bar-fill" style="width:${pct}%"></div></div>
-                    <div class="fund-amounts"><strong>${fmt(f.raised)}</strong><span>из ${fmt(f.goal)} · ${pct}%</span></div>
-                    <button class="btn-support" onclick="event.stopPropagation();window.open('${f.fundUrl}','_blank')">Поддержать</button>
-                </div>
-            </div>
-        </div>`;
-    }).join('');
-}
-
-/* ================================================================
-   РЕНДЕР СЕТКИ ИГР
-================================================================ */
-function renderGames() {
-    const grid = document.getElementById('gamesGrid');
-    grid.innerHTML = games.map(g => `
-        <div class="game-card" onclick="openModal('game','${g.id}')">
-            ${g.cover
-                ? `<img src="${g.cover}" alt="${g.name}">`
-                : `<div class="game-card-placeholder">
-                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                           <rect x="2" y="3" width="20" height="14" rx="2"/>
-                           <path d="M8 21h8M12 17v4M7 10h2M9 8v4M14 10h2"/>
-                       </svg>
-                       обложка
-                   </div>`
-            }
-            <div class="game-badge ${g.status === 'done' ? 'game-badge--done' : ''}">${g.badge}</div>
-            <div class="game-card-label">${g.name}</div>
-        </div>`
-    ).join('');
+async function loadFundingData() {
+    try {
+        const res = await fetch('https://bs.fumodub.com/targets');
+        const data = await res.json();
+        if (data.ok && Array.isArray(data.targets)) {
+            fundings.forEach(f => {
+                if (f.apiId == null) return;
+                const target = data.targets.find(t => t.id === f.apiId);
+                if (!target) return;
+                f.raised = target.currentSum;
+                f.goal   = target.targetSum;
+            });
+        }
+    } catch (e) {
+        console.warn('Не удалось загрузить данные сборов:', e);
+    } finally {
+        renderFundings();
+        renderGames();
+    }
 }
 
 /* ================================================================
@@ -453,8 +422,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 /* ================================================================
    INIT
 ================================================================ */
-renderFundings();
-renderGames();
+loadFundingData();
 </script>
 </body>
 </html>
