@@ -713,12 +713,6 @@ footer {
     gap: 22px;
 }
 
-.fund-name {
-    white-space: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
-
 .fund-card {
     background: var(--secondary-bg);
     border: 1px solid rgba(79,172,254,0.12);
@@ -766,9 +760,11 @@ footer {
     font-weight: 700;
     color: var(--text-color);
     margin: 0;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .fund-desc {
