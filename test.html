@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUMDUB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Mulish:wght@300;400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1 class="logo">
+      <span>FUM</span>
+      <svg class="heart" viewBox="0 0 32 32">
+        <path d="M15.2 8.17947C15.3889 8.43128 15.6852 8.57947 16 8.57947C16.3148 8.57947 16.6111 8.43128 16.8 8.17947C17.4573 7.30307 18.6472 6.22595 20.1728 5.63793C21.6646 5.06297 23.4948 4.94489 25.5528 5.9739C28.1458 7.27042 29.104 9.48525 28.9397 11.9505C28.7711 14.4792 27.4039 17.2613 25.2929 19.3724C23.0795 21.5857 19.2659 25.3965 16.5035 27.4972C16.2244 27.7094 15.8395 27.7071 15.5508 27.4741C12.9979 25.4135 8.86139 21.5267 6.7071 19.3724C4.59602 17.2613 3.22886 14.4792 3.06028 11.9504C2.89593 9.48525 3.85416 7.27042 6.44721 5.9739C8.50523 4.94489 10.3354 5.06297 11.8271 5.63793C13.3528 6.22595 14.5427 7.30308 15.2 8.17947Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <defs>
+    <clipPath id="heartClip">
+      <path d="M6 5.07947C10.6648 2.7471 14.5 5.57947 16 7.57947C17.5 5.57947 21.3352 2.7471 26 5.07947C32 8.07946 30.5 15.5795 26 20.0795C23.8042 22.2752 19.9372 26.1423 17.1088 28.2932C16.4554 28.7901 15.5615 28.7678 14.9227 28.2522C12.33 26.1595 8.16503 22.2445 6 20.0795C1.49998 15.5795 -4.76837e-06 8.07946 6 5.07947Z"/>
+    </clipPath>
+  </defs>
+        <g clip-path="url(#heartClip)">
+        <path d="M2.0426 -19.4543L30.6625 9.16553" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 -4.45435L30.6625 24.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 10.5457L30.6625 39.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 -19.4543L30.6625 9.16553" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 -4.45435L30.6625 24.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 10.5457L30.6625 39.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 -14.4543L30.6625 14.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 0.545654L30.6625 29.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 15.5457L30.6625 44.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 20.5457L30.6625 49.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 -9.45435L30.6625 19.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 5.54565L30.6625 34.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.0426 25.5457L30.6625 54.1655" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        </svg>
+      <span>DUB</span>
+    </h1>
+  <ul class="nav-links">
+    <li class="nav-item">
+      <button class="nav-btn">Аниме <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-top:2px"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div class="dropdown">
+        <a href="#">Все аниме</a>
+        <a href="#">Фильмы</a>
+        <a href="#">OVA</a>
+        <a href="#">ONA</a>
+      </div>
+    </li>
+    <li><a href="#">Расписание</a></li>
+  </ul>
+  <div class="header-right">
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Поиск...">
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero-slider-box">
+  <button class="hero-arrow prev" id="hero-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/></svg></button>
+  <button class="hero-arrow next" id="hero-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg></button>
+  <div class="hero-viewport">
+    <div class="hero-track" id="hero-track">
+      <div class="hero-slide">
+        <div class="hero-bg"><div class="hero-bg-inner"><img src="5FtA65BPBgs.jpg" alt=""></div></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-info-side">
+            <div class="hero-badge">ОНГОИНГ</div>
+            <h1 class="hero-title">Магическая Битва 2</h1>
+            <div class="hero-meta"><span>📅 2024</span><span>🎬 24 эп.</span></div>
+            <div class="hero-genres"><span class="genre-pill">Экшн</span><span class="genre-pill">Мистика</span></div>
+            <p class="hero-desc">Продолжение истории Итадори Юдзи и его друзей в мире проклятий и магических техник.</p>
+            <div class="hero-btns">
+                <button class="btn-primary">Смотреть</button>
+                <button class="btn-ghost">В закладки</button>
+            </div>
+            <div class="hero-screens">
+              <div class="screen-thumb active"><img src="5FtA65BPBgs.jpg" alt=""></div>
+              <div class="screen-thumb"><img src="7TWNWTXeHR0.jpg" alt=""></div>
+              <div class="screen-thumb"><img src="8eFmDOP0zYk.jpg" alt=""></div>
+            </div>
+          </div>
+          <div class="hero-poster-side"><img src="5FtA65BPBgs.jpg" alt=""></div>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="hero-bg"><div class="hero-bg-inner"><img src="7TWNWTXeHR0.jpg" alt=""></div></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-info-side">
+            <div class="hero-badge" style="background:var(--accent);">ТОП НЕДЕЛИ</div>
+            <h1 class="hero-title">Клинок Рассекающий</h1>
+            <div class="hero-meta"><span>📅 2024</span><span>🎬 12 эп.</span></div>
+            <div class="hero-genres"><span class="genre-pill">Экшн</span><span class="genre-pill">Приключения</span></div>
+            <p class="hero-desc">Тандзиро отправляется на новую опасную миссию в Квартал Красных Фонарей.</p>
+            <div class="hero-btns">
+                <button class="btn-primary">Смотреть</button>
+                <button class="btn-ghost">В закладки</button>
+            </div>
+            <div class="hero-screens">
+              <div class="screen-thumb active"><img src="7TWNWTXeHR0.jpg" alt=""></div>
+              <div class="screen-thumb"><img src="5FtA65BPBgs.jpg" alt=""></div>
+              <div class="screen-thumb"><img src="8eFmDOP0zYk.jpg" alt=""></div>
+            </div>
+          </div>
+          <div class="hero-poster-side"><img src="7TWNWTXeHR0.jpg" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-fade-bottom"></div>
+</section>
+
+<!-- ОНГОИНГИ -->
+<section class="section" id="sec-ongoing">
+  <div class="section-header"><h2 class="section-title">ОНГОИНГИ</h2><a href="#" class="see-all">Все →</a></div>
+  <div class="slider-outer">
+    <button class="tr-arrow prev" id="og-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button class="tr-arrow next" id="og-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="slider-viewport"><div class="slider-track" id="og-track">
+      <div class="slide-item">
+        <div class="card">
+          <div class="card-img"><img src="ReZero 3rd Season rus.png">
+            <div class="card-overlay">
+              <span class="ep-badge">2 из 12 ЭП.</span>
+              <div class="card-name">Re:Zero 3rd Season</div>
+              <div class="card-romaji">Re:Zero kara Hajimeru Isekai Seikatsu</div>
+              <div class="card-hover-info">
+                <div class="card-genres"><span>Экшн</span><span>Фэнтези</span></div>
+                <p class="card-desc">Продолжение приключений Субару.</p>
+                <button class="btn-watch-sm">СМОТРЕТЬ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-item">
+        <div class="card">
+          <div class="card-img"><img src="Reijou Level 99.png">
+            <div class="card-overlay">
+              <span class="ep-badge">1 из 12 ЭП.</span>
+              <div class="card-name">Другой тайтл</div>
+              <div class="card-romaji">Another World Title</div>
+              <div class="card-hover-info">
+                <div class="card-genres"><span>Фэнтези</span></div>
+                <p class="card-desc">Описание.</p>
+                <button class="btn-watch-sm">СМОТРЕТЬ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-item"><div class="card"><div class="card-img"><img src="Mayonaka Punch rus.png"><div class="card-overlay"><span class="ep-badge">5 ЭП.</span><div class="card-name">Тайтл 3</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><img src="Oshi no Ko Season 2 rus.png"><div class="card-overlay"><span class="ep-badge">8 ЭП.</span><div class="card-name">Тайтл 4</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><img src="Shikanoko V2 rus.png"><div class="card-overlay"><span class="ep-badge">3 ЭП.</span><div class="card-name">Тайтл 5</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><img src="Maicching Machiko-sensei rus.png"><div class="card-overlay"><span class="ep-badge">12 ЭП.</span><div class="card-name">Тайтл 6</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><img src="mahou rus.png"><div class="card-overlay"><span class="ep-badge">6 ЭП.</span><div class="card-name">Тайтл 7</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ЗАВЕРШЁННЫЕ -->
+<section class="section" id="sec-done">
+  <div class="section-header" style="--bar:var(--accent2)"><h2 class="section-title">ЗАВЕРШЁННЫЕ</h2><a href="#" class="see-all" style="color:var(--accent2)">Все →</a></div>
+  <div class="slider-outer">
+    <button class="tr-arrow prev" id="dn-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button class="tr-arrow next" id="dn-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="slider-viewport"><div class="slider-track" id="dn-track">
+      <div class="slide-item">
+        <div class="card">
+          <div class="card-img"><img src="SAOGGO rus.png">
+            <div class="card-overlay">
+              <span class="ep-badge">12 / 12 ЭП.</span>
+              <div class="card-name">SAO Alternative GGO</div>
+              <div class="card-romaji">Sword Art Online Alternative: Gun Gale Online</div>
+              <div class="card-hover-info">
+                <div class="card-genres"><span>Экшн</span><span>Игры</span></div>
+                <p class="card-desc">Мир пушек.</p>
+                <button class="btn-watch-sm">СМОТРЕТЬ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-item"><div class="card"><div class="card-img"><div class="card-overlay"><span class="ep-badge">24 ЭП.</span><div class="card-name">Завершённый 2</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><div class="card-overlay"><span class="ep-badge">12 ЭП.</span><div class="card-name">Завершённый 3</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><div class="card-overlay"><span class="ep-badge">26 ЭП.</span><div class="card-name">Завершённый 4</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><div class="card-overlay"><span class="ep-badge">13 ЭП.</span><div class="card-name">Завершённый 5</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><div class="card-overlay"><span class="ep-badge">24 ЭП.</span><div class="card-name">Завершённый 6</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+      <div class="slide-item"><div class="card"><div class="card-img"><div class="card-overlay"><span class="ep-badge">6 ЭП.</span><div class="card-name">Завершённый 7</div><div class="card-hover-info"><button class="btn-watch-sm">СМОТРЕТЬ</button></div></div></div></div></div>
+    </div></div>
+  </div>
+</section>
+
+<footer>Для связи писать на почту: <a href="mailto:help@fumodub.ru" style="color:var(--accent); text-decoration:none;">help@fumodub.ru</a></footer>
+
+<script>
+function addDrag(viewportEl, onDragEnd) {
+  let startX = 0, isDragging = false, moved = 0;
+  viewportEl.addEventListener('mousedown', e => {
+    isDragging = true; startX = e.clientX; moved = 0;
+    viewportEl.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    moved = e.clientX - startX;
+  });
+  window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    viewportEl.style.cursor = '';
+    if (Math.abs(moved) > 50) onDragEnd(moved);
+  });
+  viewportEl.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; moved = 0; });
+  viewportEl.addEventListener('touchmove', e => { if (!isDragging) return; moved = e.touches[0].clientX - startX; });
+  viewportEl.addEventListener('touchend', () => { if (!isDragging) return; isDragging = false; if (Math.abs(moved) > 50) onDragEnd(moved); });
+}
+
+function initSlider({ trackId, prevId, nextId, total, perViewDesktop }) {
+  const track = document.getElementById(trackId), prev = document.getElementById(prevId), next = document.getElementById(nextId);
+  const viewport = track.parentElement, items = track.children;
+  let cur = 0;
+  function getPerView() {
+    if (perViewDesktop === 1) return 1;
+    const w = window.innerWidth;
+    if (w <= 480) return 1.5;
+    if (w <= 768) return 2.5;
+    if (w <= 1024) return 3.5;
+    return perViewDesktop;
+  }
+  function update() {
+    const perView = getPerView();
+    const max = Math.max(0, total - Math.floor(perView));
+    cur = Math.min(cur, max);
+    let w = viewport.offsetWidth / perView;
+    for(let it of items) it.style.width = w + 'px';
+    track.style.transform = `translateX(-${cur * w}px)`;
+    if(prev) prev.style.opacity = cur === 0 ? '0.2' : '1';
+    if(next) next.style.opacity = cur >= max ? '0.2' : '1';
+  }
+  function go(n) { const perView = getPerView(); const max = Math.max(0, total - Math.floor(perView)); cur = Math.max(0, Math.min(max, n)); update(); }
+  prev?.addEventListener('click', () => go(cur - 1));
+  next?.addEventListener('click', () => go(cur + 1));
+  addDrag(viewport, delta => go(delta < 0 ? cur + 1 : cur - 1));
+  window.addEventListener('resize', update); update();
+}
+
+initSlider({ trackId:'hero-track', prevId:'hero-prev', nextId:'hero-next', total:2, perViewDesktop:1 });
+initSlider({ trackId:'og-track', prevId:'og-prev', nextId:'og-next', total:7, perViewDesktop:5 });
+initSlider({ trackId:'dn-track', prevId:'dn-prev', nextId:'dn-next', total:7, perViewDesktop:5 });
+
+document.querySelectorAll('.screen-thumb').forEach(th => {
+  th.addEventListener('click', () => {
+    const slide = th.closest('.hero-slide'), bgInner = slide.querySelector('.hero-bg-inner'), bgImg = bgInner.querySelector('img'), thumbImg = th.querySelector('img');
+    th.parentElement.querySelectorAll('.screen-thumb').forEach(t => t.classList.remove('active'));
+    th.classList.add('active');
+    bgInner.classList.add('fade-out');
+    setTimeout(() => {
+      bgImg.src = thumbImg.src;
+      if (bgImg.complete) bgInner.classList.remove('fade-out');
+      else bgImg.onload = () => bgInner.classList.remove('fade-out');
+    }, 400);
+  });
+});
+</script>
+</body>
+</html>
